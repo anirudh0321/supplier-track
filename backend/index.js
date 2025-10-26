@@ -8,10 +8,18 @@ app.use(cors());
 app.use(express.json());
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID;
-const auth = new google.auth.GoogleAuth({
-  keyFile: 'service-account.json',
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
+
+let auth;
+try {
+  auth = new google.auth.GoogleAuth({
+    credentials: process.env.GOOGLE_CREDENTIALS ? JSON.parse(process.env.GOOGLE_CREDENTIALS) : undefined,
+    keyFile: 'service-account.json',
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+} catch (err) {
+  console.error('Error initializing Google Auth:', err);
+}
+
 const sheets = google.sheets({ version: 'v4', auth });
 
 // List all suppliers (sheet tabs)
