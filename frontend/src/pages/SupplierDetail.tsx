@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_BASE } from '../api';
+import { API_BASE } from '../api.js';
 
 const accent = "#4f8cff";
 const accentLight = "#e3f0ff";
