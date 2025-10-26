@@ -1,3 +1,3 @@
-declare module "../api" {
+declare module "../api.js" {
   export const API_BASE: string;
 } 
